@@ -1,5 +1,5 @@
 const express = require('express');
-const api = require('./server/app');
+const api = require('./app/app');
 const app = express();
 const path = require('path');
 
