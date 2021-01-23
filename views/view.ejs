@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Desk Setups!</title>
+    <%- include('./header.ejs') %>
+  </head>
+  <body class="font-monospace">
+    <div class="container mx-auto">
+      <%- include('./navbar.ejs') %>
+      <div class="container text-center">
+        <% if(typeof desk!=='undefined') { %>
+        <h1 class="mt-2"><%= desk.title %></h1>
+        <img
+          src="<%= desk.imgURL %>"
+          alt="<%= desk.title %>"
+          style="height: 60vh"
+        />
+        <p class="mt-3">
+          from: <span class="fst-italic"> <%= desk.username %> </span><br />
+          <span class=""><%= desk.description %></span>
+        </p>
+        <div class="">
+          <button class="btn btn-warning update" data-doc="<%= desk._id %>">
+            Update
+          </button>
+          <button class="btn btn-danger delete" data-doc="<%= desk._id %>">
+            Delete
+          </button>
+          <script>
+            const trashcan = document.querySelector('button.delete');
+            trashcan.addEventListener('click', (e) => {
+              const endpoint = `/single-post/${trashcan.dataset.doc}`;
+
+              fetch(endpoint, {
+                method: 'DELETE',
+              })
+                .then((response) => response.json())
+                .then((data) => (window.location.href = data.redirect))
+                .catch((err) => console.log(err));
+            });
+          </script>
+        </div>
+        <% } else { %>
+        <h1 class="mt-2">Can't find what you are looking for.</h1>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

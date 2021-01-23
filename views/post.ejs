@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Show Me What You Got!</title>
+    <%- include('./header.ejs') %>
+  </head>
+  <body class="font-monospace">
+	  <div class="container mx-auto">
+		<%- include('./navbar.ejs') %>
+		<h1 class="fw-bold text-uppercase">Post your Desktop Setup:</h1>
+		<form action="/add-post" method="POST">
+		  <label for="username" class="form-label">Username: </label>
+		  <input type="text" name="username" id="username" class="form-control mb-3" />
+		  <label for="title" class="form-label">Title: </label>
+		  <input type="text" name="title" id="title" class="form-control mb-3" />
+		  <label for="imgURL" class="form-label">URL: </label>
+		  <input type="text" name="imgURL" id="imgURL" placeholder="Post a link to your setup image." class="form-control mb-3" />
+		  <label for="description" class="form-label">Description: </label>
+		  <textarea type="text" name="description" id="description" class="form-control mb-3" /></textarea>
+		  <% if(typeof error!=='undefined') { %>
+			<div class="text-danger my-3">* <%= error %></div>
+			<% } %>
+		  <button class="btn btn-primary">Submit</button>
+	  </div>
+
+    </form>
+  </body>
+</html>
