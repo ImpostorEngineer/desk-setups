@@ -30,9 +30,15 @@
           </button>
           <script>
             const trashcan = document.querySelector('button.delete');
-            trashcan.addEventListener('click', (e) => {
+            trashcan.addEventListener('click', (e) =>
+              alert("Can't do that yet!")
+            );
+            const update = document.querySelector('button.update');
+            update.addEventListener('click', (e) =>
+              alert("Can't do that yet!")
+            );
+            /*             trashcan.addEventListener('click', (e) => {
               const endpoint = `/single-post/${trashcan.dataset.doc}`;
-
               fetch(endpoint, {
                 method: 'DELETE',
               })
@@ -40,6 +46,7 @@
                 .then((data) => (window.location.href = data.redirect))
                 .catch((err) => console.log(err));
             });
+ */
           </script>
         </div>
         <% } else { %>
