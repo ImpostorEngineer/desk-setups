@@ -27,7 +27,7 @@
             <h3 class="mt-2"><%= desk.title %></h3>
             <p class="">
               from: <span class="fst-italic"> <%= desk.username %> </span><br />
-              <span class=""><%= desk.description %></span>
+              <span class=""><%= desk.description.slice(0, 40) %></span>
             </p>
           </div>
           <%})} %>
