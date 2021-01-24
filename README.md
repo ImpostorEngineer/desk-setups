@@ -9,3 +9,7 @@ I just made it a little simpler.
 - [ ] Change Delete function to Visibility: false
 - [ ] Update post
 - [ ] Maybe admin page
+
+### Future/Feature?
+
+- [ ] Login
