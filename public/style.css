@@ -13,6 +13,9 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #ff0000;
 }
+body {
+  background-color: #d3d3d3;
+}
 .main-page img {
   height: 250px;
   width: auto;
