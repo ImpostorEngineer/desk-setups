@@ -19,12 +19,12 @@ html {
   max-width: 400px;
   object-fit: cover;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #ccc;
+  box-shadow: 5px 5px 10px rgb(53, 53, 53);
 }
 .main-page img:hover {
-  box-shadow: 10px 10px 10px #444;
+  box-shadow: 10px 10px 10px rgb(53, 53, 53);
 }
 .single-view img {
   border-radius: 10px;
-  box-shadow: 5px 5px 10px #ccc;
+  box-shadow: 5px 5px 10px rgb(53, 53, 53);
 }

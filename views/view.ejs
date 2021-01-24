@@ -11,7 +11,7 @@
       <%- include('./navbar.ejs') %>
       <div class="container text-center single-view">
         <% if(typeof desk!=='undefined' && desk!==null) { %>
-        <h1 class="mt-2"><%= desk.title %></h1>
+        <h1 class="mt-2 fw-bold"><%= desk.title %></h1>
         <img
           src="<%= desk.imgURL %>"
           alt="<%= desk.title %>"
