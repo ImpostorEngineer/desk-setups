@@ -17,13 +17,14 @@
 		  <input type="text" name="title" id="title" class="form-control mb-3" />
 		  <label for="imgURL" class="form-label">URL: </label>
 		  <input type="text" name="imgURL" id="imgURL" placeholder="Post a link to your setup image." class="form-control mb-3" />
-		  <label for="description" class="form-label">Description (200 chars): <span id="count" class="text-muted"></span> </label>
-		  <textarea type="text" name="description" id="description" class="form-control mb-3 desc" placeholder="Describe your setup, maybe a link to parts. First 40 chars show on the main page." /></textarea>
+		  <label for="description" class="form-label">Description <span id="count" class="text-muted"></span>:</label>
+		  <textarea type="text" name="description" id="description" class="form-control mb-3 desc" placeholder="Describe your setup, maybe a link to parts. First 40 chars appear on the main page." /></textarea>
 		  <script>
 			  const txtArea = document.querySelector('textarea.desc');
 			    const counting = txtArea.addEventListener('keydown', (e) => {
-				let txtCount = txtArea.value.length;
-				  document.getElementById('count').innerHTML=txtCount;
+				let txtCount = 300;
+				txtCount -= txtArea.value.length;
+				document.getElementById('count').innerHTML=txtCount;
 			  });
 		  </script>
 		  <% if(typeof error!=='undefined') { %>

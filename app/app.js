@@ -8,9 +8,9 @@ const { response } = require('express');
 
 const schema = Joi.object({
   username: Joi.string().alphanum().required(),
-  title: Joi.string().max(20).required(),
+  title: Joi.string().trim().max(30).required(),
   imgURL: Joi.string().uri().required(),
-  description: Joi.string().max(200),
+  description: Joi.string().trim().max(300),
 });
 
 router.use(express.urlencoded({ extended: true }));
