@@ -42,13 +42,22 @@ router.post('/add-post', (req, res, next) => {
   const result = schema.validate(req.body);
   if (result.error == null) {
     const { username, title, imgURL, description } = result.value;
-    let slug = title
-      .toLowerCase()
-      .replace(/[^a-z\s]/, '')
-      .replace(' ', '-');
-    if (DeskPost.findOne({ slug: slug })) {
-      slug = slug + '-' + Math.floor(Math.random() * 100);
-    }
+    const d = new Date();
+    const slug =
+      title
+        .toLowerCase()
+        .replace(/[^a-z\s]/, '')
+        .replace(/\s/g, '-') +
+      '-' +
+      d.getFullYear() +
+      '-' +
+      parseInt(d.getMonth() + 1) +
+      '-' +
+      d.getDate() +
+      '-' +
+      d.getHours() +
+      '-' +
+      d.getMinutes();
     const post = new DeskPost({
       username,
       title,
