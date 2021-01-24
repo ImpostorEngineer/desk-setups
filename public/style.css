@@ -28,6 +28,7 @@ body {
   box-shadow: 10px 10px 10px rgb(53, 53, 53);
 }
 .single-view img {
+  height: 30vmax;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgb(53, 53, 53);
 }

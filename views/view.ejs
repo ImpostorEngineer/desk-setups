@@ -12,11 +12,9 @@
       <div class="container text-center single-view">
         <% if(typeof desk!=='undefined' && desk!==null) { %>
         <h1 class="mt-2 fw-bold"><%= desk.title %></h1>
-        <img
-          src="<%= desk.imgURL %>"
-          alt="<%= desk.title %>"
-          style="height: 60vh"
-        />
+        <a href="<%= desk.imgURL %>" target="_blank">
+          <img src="<%= desk.imgURL %>" alt="<%= desk.title %>"
+        /></a>
         <p class="mt-3">
           from: <span class="fst-italic"> <%= desk.username %> </span><br />
           <span class=""><%= desk.description %></span>
