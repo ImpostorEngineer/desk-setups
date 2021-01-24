@@ -41,7 +41,22 @@ router.get('/add-post', (req, res, next) => {
 router.post('/add-post', (req, res, next) => {
   const result = schema.validate(req.body);
   if (result.error == null) {
-    const post = new DeskPost(result.value);
+    const { username, title, imgURL, description } = result.value;
+    let slug = title
+      .toLowerCase()
+      .replace(/[^a-z\s]/, '')
+      .replace(' ', '-');
+    if (DeskPost.findOne({ slug: slug })) {
+      slug = slug + '-' + Math.floor(Math.random() * 100);
+    }
+    const post = new DeskPost({
+      username,
+      title,
+      imgURL,
+      description,
+      slug,
+      approved: false,
+    });
     post
       .save()
       .then((result) => {
@@ -65,21 +80,19 @@ router.post('/add-post', (req, res, next) => {
 router.get('/single-post/', (req, res, next) => {
   res.render('view');
 });
-
+router.get('/single-post/:slug', (req, res, next) => {
+  const slug = req.params.slug;
+  DeskPost.findOne({ slug: slug })
+    .then((result) => {
+      res.render('view', { desk: result });
+    })
+    .catch((err) => console.log(err));
+});
 router.delete('/single-post/:id', (req, res, next) => {
   const id = req.params.id;
   DeskPost.findByIdAndDelete(id)
     .then((result) => {
       res.json({ redirect: '/' });
-    })
-    .catch((err) => console.log(err));
-});
-
-router.get('/single-post/:id', (req, res, next) => {
-  const id = req.params.id;
-  DeskPost.findById(id)
-    .then((result) => {
-      res.render('view', { desk: result });
     })
     .catch((err) => console.log(err));
 });

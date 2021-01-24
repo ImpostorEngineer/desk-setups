@@ -10,18 +10,17 @@
     <div class="container mx-auto">
       <%- include('./navbar.ejs') %>
       <h1 class="text-uppercase fw-bold my-3">Show me what you got!</h1>
-      <div class="container">
+      <div class="container main-page">
         <div class="row mb-3 align-items-top">
           <!-- prettier-ignore -->
           <% if (desks.length >0) { %> 
-          <% desks.forEach(desk => { %>
+          <% desks.forEach(desk => { if(desk.approved == true) { %>
           <div class="col-4 mb-3">
-            <a href="/single-post/<%= desk._id %>">
+            <a href="/single-post/<%= desk.slug %>">
               <img
                 src="<%= desk.imgURL %>"
                 alt="<%= desk.title %>"
                 class="card-img-top"
-                style="height: 250px; width: auto"
               />
             </a>
             <h3 class="mt-2"><%= desk.title %></h3>
@@ -30,7 +29,7 @@
               <span class=""><%= desk.description.slice(0, 40) %></span>
             </p>
           </div>
-          <%})} %>
+          <%}})} %>
         </div>
       </div>
     </div>

@@ -22,6 +22,9 @@ const postSchema = new Schema(
     slug: {
       type: String,
     },
+    approved: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

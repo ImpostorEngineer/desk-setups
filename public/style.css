@@ -13,3 +13,18 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #ff0000;
 }
+.main-page img {
+  height: 250px;
+  width: auto;
+  max-width: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #ccc;
+}
+.main-page img:hover {
+  box-shadow: 10px 10px 10px #444;
+}
+.single-view img {
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px #ccc;
+}
