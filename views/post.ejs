@@ -32,8 +32,8 @@
 		  <textarea type="text" size="300" height="50" name="description" id="description" value="<%= description %>" class="form-control mb-3 desc" placeholder="Describe your setup, maybe a link to parts. First 40 chars appear on the main page."></textarea>
 		  <script>
 			  const txtArea = document.querySelector('textarea.desc');
-			    const counting = txtArea.addEventListener('keydown', (e) => {
-				let txtCount = 300;
+			  const counting = txtArea.addEventListener('keydown', (e) => {
+				let txtCount = 300; 
 				txtCount -= txtArea.value.length;
 				document.getElementById('count').innerHTML=txtCount;
 			  });
