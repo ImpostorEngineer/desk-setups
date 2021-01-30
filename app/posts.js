@@ -21,6 +21,7 @@ const postSchema = new Schema(
     },
     slug: {
       type: String,
+      unique: true,
     },
     approved: {
       type: Boolean,

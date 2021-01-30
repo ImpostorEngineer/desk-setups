@@ -13,8 +13,8 @@
       <div class="container">
         <div class="row mb-3 align-items-top">
           <!-- prettier-ignore -->
-          <% if (desks.length >0) { %> 
-          <% desks.forEach(desk => { if(desk.approved == true) { %>
+          <% if (post.length > 0) { %> 
+          <% post.forEach(desk => { if(desk.approved == true) { %>
           <div class="col-sm mb-3">
             <a href="/single-post/<%= desk.slug %>">
               <img
