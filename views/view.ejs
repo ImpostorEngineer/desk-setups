@@ -20,11 +20,7 @@
           <span class=""><%= desk.description %></span>
         </p>
         <div class="">
-          <a
-            href="/edit-post/<%= desk._id %>"
-            class="btn btn-warning update"
-            data-doc="<%= desk._id %>"
-          >
+          <a href="/edit-post/<%= desk._id %>" class="btn btn-warning">
             Update
           </a>
           <button class="btn btn-danger delete" data-doc="<%= desk._id %>">
@@ -45,18 +41,6 @@
                 .then((data) => (window.location.href = data.redirect))
                 .catch((err) => console.log(err));
             });
-
-const update = document.querySelector('a.update');
-            update.addEventListener('click', (e) => {
-              const endpoint = `/edit-post/${update.dataset.doc}`;
-              window.location.href = data.redirect;
-            }); */
-
-            /*
-                       update = document.querySelector('button.update');
-                       update.addEventListener('click', (e) =>
-                         alert("Can't do that yet!")
-                       );
             */
           </script>
         </div>
