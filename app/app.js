@@ -124,7 +124,7 @@ function savePostAndRedirect() {
       imgURL,
       description,
       slug,
-      approved: true,
+      approved: false,
     });
     try {
       res.redirect(`/single-post/${post.slug}`);
