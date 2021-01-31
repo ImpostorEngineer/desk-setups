@@ -45,31 +45,21 @@ router.get('/edit-post/:id', async (req, res, next) => {
 router.post(
   '/add-post',
   async (req, res, next) => {
-    req.result = schema.validate(req.body);
+    req.post = new DeskPost();
     next();
   },
   savePostAndRedirect()
 );
 
-router.post('/edit-desk/:id', async (req, res, next) => {
-  const id = req.params.id;
-  let updatePost = await DeskPost.findById(id);
-  let result = schema.validate(req.body);
-  let post = new DeskPost(result.value);
-  let slug = slugGen(post.title);
-  try {
-    updatePost.title = post.title;
-    updatePost.username = post.username;
-    updatePost.imgURL = post.imgURL;
-    updatePost.description = post.description;
-    updatePost.slug = slug;
-    await updatePost.save();
-    res.redirect(`/single-post/${updatePost.slug}`);
-  } catch (err) {
-    console.log(err);
-    res.render('post', { post: req.body });
-  }
-});
+router.post(
+  '/edit-desk/:id',
+  async (req, res, next) => {
+    const id = req.params.id;
+    req.post = await DeskPost.findById(id);
+    next();
+  },
+  savePostAndRedirect()
+);
 
 function slugGen(title) {
   const d = new Date();
@@ -115,17 +105,16 @@ router.delete('/single-post/:id', (req, res, next) => {
 
 function savePostAndRedirect() {
   return async (req, res) => {
-    let result = req.result;
+    let post = req.post;
+    let result = schema.validate(req.body);
     let { username, title, imgURL, description } = result.value;
     let slug = slugGen(title);
-    let post = new DeskPost({
-      username,
-      title,
-      imgURL,
-      description,
-      slug,
-      approved: false,
-    });
+    post.username = username;
+    post.title = title;
+    post.imgURL = imgURL;
+    post.description = description;
+    post.slug = slug;
+    post.approved = false;
     try {
       res.redirect(`/single-post/${post.slug}`);
       post = await post.save();
@@ -137,45 +126,3 @@ function savePostAndRedirect() {
 }
 
 module.exports = router;
-
-/* router.post('/add-post', (req, res, next) => {
-  const result = schema.validate(req.body);
-  if (result.error == null) {
-    const { username, title, imgURL, description } = result.value;
-    const d = new Date();
-    const slug =
-      title
-        .toLowerCase()
-        .replace(/[^a-z\s]/, '')
-        .replace(/\s/g, '-') +
-      '-' +
-      d.getFullYear() +
-      '-' +
-      parseInt(d.getMonth() + 1) +
-      '-' +
-      d.getDate() +
-      '-' +
-      d.getHours() +
-      '-' +
-      d.getMinutes();
-    const post = new DeskPost({
-      username,
-      title,
-      imgURL,
-      description,
-      slug,
-      approved: false,
-    });
-    post
-      .save()
-      .then((result) => {
-        res.redirect('/');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  } else {
-    const error = result.error.details[0].message;
-    res.render('post', { desk: req.body, error: error, button: 'Submit' });
-  }
-}); */
