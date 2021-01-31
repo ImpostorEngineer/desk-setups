@@ -6,7 +6,7 @@ I just made it a little simpler.
 
 ### TODO
 
-- [ ] Change Delete function to Visibility: false
+- [x] Change Delete function to Visibility: false
 - [x] Update post
 - [ ] Maybe admin page
 
