@@ -4,7 +4,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const DeskPost = require('./posts');
 const Joi = require('joi');
-const { response } = require('express');
 
 const schema = Joi.object({
   username: Joi.string().alphanum().required(),
