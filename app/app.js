@@ -96,8 +96,10 @@ router.get('/single-post/:slug', (req, res, next) => {
 
 router.delete('/single-post/:id', (req, res, next) => {
   const id = req.params.id;
-  DeskPost.findByIdAndDelete(id)
+  DeskPost.findById(id)
     .then((result) => {
+      result.approved = false;
+      result.save();
       res.json({ redirect: '/' });
     })
     .catch((err) => console.log(err));
