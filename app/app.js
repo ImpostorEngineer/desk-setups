@@ -41,6 +41,12 @@ router.get('/edit-post/:id', async (req, res, next) => {
   res.render('edit', { post: result });
 });
 
+router.get('/admin-edit-post/:id', async (req, res, next) => {
+  const id = req.params.id;
+  const result = await DeskPost.findById(id);
+  res.render('admin_edit', { post: result });
+});
+
 router.post(
   '/add-post',
   async (req, res, next) => {
@@ -83,6 +89,31 @@ function slugGen(title) {
 router.get('/single-post/', (req, res, next) => {
   res.render('view');
 });
+
+router.get('/main-command-panel/', async (req, res, next) => {
+  const allPosts = await DeskPost.find().sort({ createdAt: -1 });
+  res.render('admin_panel', { post: allPosts });
+});
+
+router.get('/admin-edit/:slug', (req, res, next) => {
+  const slug = req.params.slug;
+  DeskPost.findOne({ slug: slug })
+    .then((result) => {
+      res.render('admin_edit', { post: result });
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post(
+  '/admin-edit-desk',
+  async (req, res, next) => {
+    const id = req.params.id;
+    let post = await DeskPost.findById(id);
+    let result = schema.validate(req.body);
+    post = result.value;
+  },
+  savePostAndRedirect()
+);
 
 router.get('/single-post/:slug', (req, res, next) => {
   const slug = req.params.slug;

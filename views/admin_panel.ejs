@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Desk Setups!</title>
+    <%- include('./header.ejs') %>
+  </head>
+  <body class="font-monospace">
+    <div class="container mx-auto main-page">
+      <%- include('./navbar.ejs') %>
+      <h1 class="text-uppercase fw-bold my-3">Show me what you got!</h1>
+      <div class="container">
+        <div class="row mb-3 align-items-top">
+          <!-- prettier-ignore -->
+          <% if (post.length > 0) { %> 
+          <% post.forEach(desk => { %>
+          <div class="col-4 mb-3">
+            <a href="/admin-edit/<%= desk.slug %>">
+              <img
+                src="<%= desk.imgURL %>"
+                alt="<%= desk.title %>"
+                class="card-img-top"
+              />
+            </a>
+            <h3 class="mt-2 fw-bold"><%= desk.title %></h3>
+            <p class="">
+              from: <span class="fst-italic"> <%= desk.username %> </span><br />
+              <span class=""><%= desk.description.slice(0, 40) %></span>
+            </p>
+          </div>
+          <% })} %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
