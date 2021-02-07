@@ -9,27 +9,67 @@
   <body class="font-monospace">
     <div class="container mx-auto main-page">
       <%- include('./navbar.ejs') %>
-      <h1 class="text-uppercase fw-bold my-3">Show me what you got!</h1>
-      <div class="container">
-        <div class="row mb-3 align-items-top">
-          <!-- prettier-ignore -->
-          <% if (post.length > 0) { %> 
+      <div>
+        <h1 class="text-uppercase fw-bold my-3">Show me what you got!</h1>
+        <div class="">
+          <div class="row mb-5 align-items-top justify-content-center">
+            <!-- prettier-ignore -->
+            <% if (post.length > 0) { %> 
           <% post.forEach(desk => { if(desk.approved == true) { %>
-          <div class="col-sm mb-3">
-            <a href="/single-post/<%= desk.slug %>">
-              <img
-                src="<%= desk.imgURL %>"
-                alt="<%= desk.title %>"
-                class="card-img-top"
-              />
-            </a>
-            <h3 class="mt-2 fw-bold"><%= desk.title %></h3>
-            <p class="">
-              from: <span class="fst-italic"> <%= desk.username %> </span><br />
-              <span class=""><%= desk.description.slice(0, 40) %></span>
-            </p>
+            <div class="col-4 mb-5">
+              <div class="card bg-transparent border-0 text-black">
+                <img
+                  src="<%= desk.imgURL %>"
+                  alt="<%= desk.title %>"
+                  class="card-img-top"
+                />
+
+                <a
+                  href="/single-post/<%= desk.slug %>"
+                  style="text-decoration: none; color: black"
+                  class="bg-transparent"
+                >
+                  <div
+                    class="hidden bg-transparent"
+                    style="
+                      position: absolute;
+                      bottom: 0px;
+                      width: 100%;
+                      height: 75px;
+                    "
+                  >
+                    <div
+                      class="card-img-overlay mt-0 pt-0"
+                      style="
+                        background-color: rgba(172, 172, 172, 0.8);
+                        border-radius: 10px;
+                      "
+                    >
+                      <h5 class="card-title mt-2 fw-bold"><%= desk.title %></h5>
+                      <p class="card-text bg-transparent">
+                        <span class="fst-italic"> <%= desk.username %> </span>
+                        <!--<br /> <span class=""><%= desk.description.slice(0, 40) %></span> -->
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <%}})} %>
+            <script>
+              let overlays = document.querySelectorAll('.col-4');
+              for (let i = 0; i < overlays.length; i++) {
+                overlays[i].addEventListener('mouseenter', (e) => {
+                  e.target.querySelector('.hidden').classList.add('show');
+                });
+                overlays[i].addEventListener('mouseleave', (e) => {
+                  e.target.querySelector('.hidden').classList.remove('show');
+                });
+              }
+
+              // console.log(overlays[1].firstElementChild);
+            </script>
           </div>
-          <%}})} %>
         </div>
       </div>
     </div>
